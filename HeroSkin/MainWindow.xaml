@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HeroSkin"
         xmlns:hs="clr-namespace:HeroSkin.Elements"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="HeroSkin" Height="450" Width="800" WindowState="Maximized">
     <Grid>
@@ -20,7 +21,12 @@
                 </MenuItem>
             </Menu>
             <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                <hs:PixelEditor x:Name="PixelEditor"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="4*" />
+                </Grid.ColumnDefinitions>
+                <hs:ToolBox x:Name="ToolBox" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <hs:PixelEditor x:Name="PixelEditor" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left"/>
             </Grid>
 
         </DockPanel>

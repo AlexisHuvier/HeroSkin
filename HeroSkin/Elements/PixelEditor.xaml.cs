@@ -131,6 +131,8 @@ namespace HeroSkin.Elements
                 {
                     mainWindow.Title += "*";
                 }
+
+                mainWindow.ToolBox.currentTool.UseLeftClick(this);
             }
             else if(Mouse.RightButton == MouseButtonState.Pressed)
             {
@@ -138,6 +140,8 @@ namespace HeroSkin.Elements
                 {
                     mainWindow.Title += "*";
                 }
+
+                mainWindow.ToolBox.currentTool.UseRightClick(this);
             }
             
         }

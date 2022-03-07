@@ -14,6 +14,7 @@ namespace HeroSkin
         {
             InitializeComponent();
             PixelEditor.SetMainWindow(this);
+            ToolBox.SetMainWindow(this);
         }
 
         private void Open_Click(object sender, RoutedEventArgs e)
