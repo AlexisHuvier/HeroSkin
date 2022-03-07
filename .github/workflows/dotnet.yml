@@ -21,10 +21,8 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore -o build
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
     - name: Upload dotnet test results
       uses: actions/upload-artifact@v3
       with:
-        name: HeroSkin-artefacts
+        name: HeroSkin-build
         path: build
