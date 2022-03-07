@@ -23,10 +23,12 @@
             <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="5*" />
                 </Grid.ColumnDefinitions>
-                <hs:ToolBox x:Name="ToolBox" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <hs:PixelEditor x:Name="PixelEditor" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                <hs:ToolBox x:Name="ToolBox" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <hs:PixelEditor x:Name="PixelEditor" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <hs:SkinRenderer x:Name="SkinRenderer" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Grid>
 
         </DockPanel>

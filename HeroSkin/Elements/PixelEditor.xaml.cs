@@ -89,6 +89,7 @@ namespace HeroSkin.Elements
                     PixelCanvas.Children.Add(pixelToPaint);
                 }
             }
+            UpdateBitmap();
         }
 
         private void InitializeCanvasGridLines()
@@ -122,25 +123,43 @@ namespace HeroSkin.Elements
             }
         }
 
+        private void UpdateBitmap()
+        {
+            if (!mainWindow.Title.EndsWith("*"))
+            {
+                mainWindow.Title += "*";
+            }
+
+            System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(rows, cols);
+            for (int x = 0; x < rows; x++)
+            {
+                for (int y = 0; y < cols; y++)
+                {
+                    Pixel pixel = project.GetLayer(currentLayer).GetPixel(x, y);
+                    if (pixel != null)
+                    {
+                        Color color = pixel.GetColor();
+                        System.Drawing.Color pixelDrawing = System.Drawing.Color.FromArgb(color.A, color.R, color.G, color.B);
+                        bitmap.SetPixel(x, y, pixelDrawing);
+                    }
+                    else
+                        bitmap.SetPixel(x, y, System.Drawing.Color.Transparent);
+                }
+            }
+            Utils.Renderer.SkinRendererScene.SetTexture(bitmap);
+        }
+
         private void UseTool()
         {
 
             if(Mouse.LeftButton == MouseButtonState.Pressed)
             {
-                if (!mainWindow.Title.EndsWith("*"))
-                {
-                    mainWindow.Title += "*";
-                }
-
+                UpdateBitmap();
                 mainWindow.ToolBox.currentTool.UseLeftClick(this);
             }
             else if(Mouse.RightButton == MouseButtonState.Pressed)
             {
-                if (!mainWindow.Title.EndsWith("*"))
-                {
-                    mainWindow.Title += "*";
-                }
-
+                UpdateBitmap();
                 mainWindow.ToolBox.currentTool.UseRightClick(this);
             }
             

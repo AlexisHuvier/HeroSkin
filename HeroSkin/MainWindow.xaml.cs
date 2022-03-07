@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using Microsoft.Win32;
-using System.IO;
 
 namespace HeroSkin
 {
