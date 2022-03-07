@@ -122,46 +122,24 @@ namespace HeroSkin.Elements
             }
         }
 
-        private void PaintCurrentPixel()
+        private void UseTool()
         {
-            if (!mainWindow.Title.EndsWith("*"))
-                mainWindow.Title += "*";
-            Point mousePos = Mouse.GetPosition(PixelCanvas);
-            int rowPos = (int)(mousePos.X / pixelSize);
-            int colPos = (int)(mousePos.Y / pixelSize);
-            double pixelTopPos = colPos * pixelSize;
-            double pixelLeftPos = rowPos * pixelSize;
 
             if(Mouse.LeftButton == MouseButtonState.Pressed)
             {
-                if(Mouse.DirectlyOver.GetType() == typeof(Rectangle))
+                if (!mainWindow.Title.EndsWith("*"))
                 {
-                    Rectangle paintedPixel = (Rectangle)Mouse.DirectlyOver;
-                    paintedPixel.Fill = currentBrush;
-                    project.GetLayer(currentLayer).SetPixel(rowPos, colPos, new Pixel(currentBrush.Color));
-                }
-                else
-                {
-                    Rectangle pixelToPaint = new Rectangle
-                    {
-                        Width = pixelSize,
-                        Height = pixelSize,
-                        Fill = new SolidColorBrush(Colors.Black)
-                    };
-                    Canvas.SetLeft(pixelToPaint, pixelLeftPos);
-                    Canvas.SetTop(pixelToPaint, pixelTopPos);
-                    project.GetLayer(currentLayer).SetPixel(rowPos, colPos, new Pixel(currentBrush.Color));
-                    PixelCanvas.Children.Add(pixelToPaint);
+                    mainWindow.Title += "*";
                 }
             }
             else if(Mouse.RightButton == MouseButtonState.Pressed)
             {
-                if(Mouse.DirectlyOver.GetType() == typeof(Rectangle))
+                if (!mainWindow.Title.EndsWith("*"))
                 {
-                    project.GetLayer(currentLayer).SetPixel(rowPos, colPos, null);
-                    PixelCanvas.Children.Remove((UIElement)Mouse.DirectlyOver);
+                    mainWindow.Title += "*";
                 }
             }
+            
         }
 
         private void PixelEditor_Loaded(object sender, RoutedEventArgs e)
@@ -171,12 +149,12 @@ namespace HeroSkin.Elements
 
         private void PixelEditor_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            PaintCurrentPixel();
+            UseTool();
         }
 
         private void PixelEditor_MouseMove(object sender, MouseEventArgs e)
         {
-            PaintCurrentPixel();
+            UseTool();
         }
     }
 }
