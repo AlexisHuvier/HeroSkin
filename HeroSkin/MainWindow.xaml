@@ -1,0 +1,28 @@
+﻿<Window x:Class="HeroSkin.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HeroSkin"
+        xmlns:hs="clr-namespace:HeroSkin.Elements"
+        mc:Ignorable="d"
+        Title="HeroSkin" Height="450" Width="800" WindowState="Maximized">
+    <Grid>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="Fichier">
+                    <MenuItem Name="New" Header="Nouveau" Click="New_Click" />
+                    <MenuItem Name="Open" Header="Ouvrir" Click="Open_Click" />
+                    <MenuItem Name="Save" Header="Enregistrer" Click="Save_Click" />
+                    <MenuItem Name="SaveOn" Header="Enregistrer Sous" Click="SaveOn_Click" />
+                    <Separator />
+                    <MenuItem Name="Quit" Header="Quitter" Click="Quit_Click"/>
+                </MenuItem>
+            </Menu>
+            <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <hs:PixelEditor x:Name="PixelEditor"/>
+            </Grid>
+
+        </DockPanel>
+    </Grid>
+</Window>
