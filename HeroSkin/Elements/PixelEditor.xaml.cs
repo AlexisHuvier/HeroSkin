@@ -12,10 +12,11 @@ namespace HeroSkin.Elements
     /// </summary>
     public partial class PixelEditor : UserControl
     {
-        public static MainWindow mainWindow;
-        public static Project project;
+        public MainWindow mainWindow;
+        public Project project;
         public int currentLayer = 0;
-        public SolidColorBrush currentBrush = new SolidColorBrush(Colors.Black);
+        public SolidColorBrush brush1 = new SolidColorBrush(Colors.Black);
+        public SolidColorBrush brush2 = new SolidColorBrush(Colors.White);
         public int rows = 64;
         public int cols = 64;
         public int pixelSize = 10;
@@ -40,7 +41,7 @@ namespace HeroSkin.Elements
 
         public void SetMainWindow(MainWindow mainWindow)
         {
-            PixelEditor.mainWindow = mainWindow;
+            this.mainWindow = mainWindow;
         }
 
         public void SaveFile(string path)
