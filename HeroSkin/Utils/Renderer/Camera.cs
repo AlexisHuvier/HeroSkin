@@ -11,7 +11,7 @@ namespace HeroSkin.Utils.Renderer
 
         private float _pitch;
         private float _yaw = -MathHelper.PiOver2;
-        private float _fov = MathHelper.PiOver2;
+        private float _fov = MathHelper.PiOver3;
 
         public Camera(Vector3 position, float aspectRatio)
         {
