@@ -11,35 +11,35 @@ namespace HeroSkin.Utils.Renderer
 
         private static readonly float[] vertices =
         {
-             1f,  1f, -1f, 1f, 1f,
-             1f, -1f, -1f, 1f, 0f,
-            -1f, -1f, -1f, 0f, 0f,
-            -1f,  1f, -1f, 0f, 1f,
+             1f,  1f, -1f, 0.125f, 0.875f,
+             1f, -1f, -1f, 0.125f, 0.750f,
+            -1f, -1f, -1f, 0.250f, 0.750f,
+            -1f,  1f, -1f, 0.250f, 0.875f,
 
-             1f,  1f,  1f, 1f, 1f,
-             1f, -1f,  1f, 1f, 0f,
-            -1f, -1f,  1f, 0f, 0f,
-            -1f,  1f,  1f, 0f, 1f,
+             1f,  1f,  1f, 0.500f, 0.875f,
+             1f, -1f,  1f, 0.500f, 0.750f,
+            -1f, -1f,  1f, 0.375f, 0.750f,
+            -1f,  1f,  1f, 0.375f, 0.875f,
 
-             1f, -1f,  1f, 1f, 0f,
-             1f, -1f, -1f, 0f, 0f,
-             1f,  1f, -1f, 0f, 1f,
-             1f,  1f,  1f, 1f, 1f,
+             1f, -1f,  1f, 0.000f, 0.750f,
+             1f, -1f, -1f, 0.125f, 0.750f,
+             1f,  1f, -1f, 0.125f, 0.875f,
+             1f,  1f,  1f, 0.000f, 0.875f,
 
-            -1f, -1f,  1f, 1f, 0f,
-            -1f, -1f, -1f, 0f, 0f,
-            -1f,  1f, -1f, 0f, 1f,
-            -1f,  1f,  1f, 1f, 1f,
+            -1f, -1f,  1f, 0.375f, 0.750f,
+            -1f, -1f, -1f, 0.250f, 0.750f,
+            -1f,  1f, -1f, 0.250f, 0.875f,
+            -1f,  1f,  1f, 0.375f, 0.875f,
 
-            -1f, -1f,  1f, 0f, 1f,
-             1f, -1f,  1f, 1f, 1f,
-             1f, -1f, -1f, 1f, 0f,
-            -1f, -1f, -1f, 0f, 0f,
+            -1f, -1f,  1f, 0.375f, 1.000f,
+             1f, -1f,  1f, 0.250f, 1.000f,
+             1f, -1f, -1f, 0.250f, 0.875f,
+            -1f, -1f, -1f, 0.375f, 0.875f,
 
-            -1f,  1f,  1f, 0f, 0f,
-             1f,  1f,  1f, 1f, 0f,
-             1f,  1f, -1f, 1f, 1f,
-            -1f,  1f, -1f, 0f, 1f
+            -1f,  1f,  1f, 0.250f, 1.000f,
+             1f,  1f,  1f, 0.125f, 1.000f,
+             1f,  1f, -1f, 0.125f, 0.875f,
+            -1f,  1f, -1f, 0.250f, 0.875f
         };
 
         private static readonly uint[] indices =
@@ -110,7 +110,7 @@ namespace HeroSkin.Utils.Renderer
 
         public static void Render()
         {
-            _time += 0.1;
+            _time += 0.2;
 
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
