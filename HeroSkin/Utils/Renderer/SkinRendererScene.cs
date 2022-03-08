@@ -11,21 +11,65 @@ namespace HeroSkin.Utils.Renderer
 
         private static readonly float[] vertices =
         {
-             0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
-             0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
-            -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
-            -0.5f,  0.5f, 0.0f, 0.0f, 1.0f
+             1f,  1f, -1f, 1f, 1f,
+             1f, -1f, -1f, 1f, 0f,
+            -1f, -1f, -1f, 0f, 0f,
+            -1f,  1f, -1f, 0f, 1f,
+
+             1f,  1f,  1f, 1f, 1f,
+             1f, -1f,  1f, 1f, 0f,
+            -1f, -1f,  1f, 0f, 0f,
+            -1f,  1f,  1f, 0f, 1f,
+
+             1f, -1f,  1f, 1f, 0f,
+             1f, -1f, -1f, 0f, 0f,
+             1f,  1f, -1f, 0f, 1f,
+             1f,  1f,  1f, 1f, 1f,
+
+            -1f, -1f,  1f, 1f, 0f,
+            -1f, -1f, -1f, 0f, 0f,
+            -1f,  1f, -1f, 0f, 1f,
+            -1f,  1f,  1f, 1f, 1f,
+
+            -1f, -1f,  1f, 0f, 1f,
+             1f, -1f,  1f, 1f, 1f,
+             1f, -1f, -1f, 1f, 0f,
+            -1f, -1f, -1f, 0f, 0f,
+
+            -1f,  1f,  1f, 0f, 0f,
+             1f,  1f,  1f, 1f, 0f,
+             1f,  1f, -1f, 1f, 1f,
+            -1f,  1f, -1f, 0f, 1f
         };
 
         private static readonly uint[] indices =
         {
             0, 1, 3,
-            1, 2, 3
+            1, 2, 3,
+
+            4, 5, 7,
+            5, 6, 7,
+
+            8,  9, 11,
+            9, 10, 11,
+
+            12, 13, 15,
+            13, 14, 15,
+
+            16, 17, 19,
+            17, 18, 19,
+
+            20, 21, 23,
+            21, 22, 23
         };
 
         private static int vbo;
         private static int vao;
         private static int ebo;
+
+        private static double _time;
+
+        private static Camera camera = new Camera(Vector3.UnitZ * 3, 1f);
 
         public static void SetTexture(Bitmap bitmap)
         {
@@ -37,9 +81,10 @@ namespace HeroSkin.Utils.Renderer
         {
             GL.Enable(EnableCap.Blend);
             GL.Enable(EnableCap.DepthTest);
-            GL.Enable(EnableCap.ScissorTest);
+            GL.BlendEquation(BlendEquationMode.FuncAdd);
+            GL.BlendFunc(BlendingFactor.SrcAlpha, BlendingFactor.OneMinusSrcAlpha);
 
-            GL.ClearColor(Color4.White);
+            GL.ClearColor(Color4.DarkGray);
 
             vao = GL.GenVertexArray();
             GL.BindVertexArray(vao);
@@ -65,14 +110,22 @@ namespace HeroSkin.Utils.Renderer
 
         public static void Render()
         {
+            _time += 0.1;
+
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
             if (texture != null)
             {
                 GL.BindVertexArray(vao);
 
+                
                 texture.Use(OpenTK.Graphics.OpenGL4.TextureUnit.Texture0);
                 shader.Use();
+
+                Matrix4 model = Matrix4.Identity * Matrix4.CreateRotationY((float)MathHelper.DegreesToRadians(_time)) * Matrix4.CreateRotationX(0.5f);
+                shader.SetMatrix4("model", model);
+                shader.SetMatrix4("view", camera.GetViewMatrix());
+                shader.SetMatrix4("projection", camera.GetProjectionMatrix());
 
                 GL.DrawElements(PrimitiveType.Triangles, indices.Length, DrawElementsType.UnsignedInt, 0);
             }
