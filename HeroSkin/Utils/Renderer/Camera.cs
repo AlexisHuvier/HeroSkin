@@ -16,7 +16,7 @@ namespace HeroSkin.Utils.Renderer
         public Camera(Vector3 position, float aspectRatio)
         {
             Position = position;
-            
+            AspectRatio = aspectRatio;
         }
 
         public Vector3 Position { get; set; }
