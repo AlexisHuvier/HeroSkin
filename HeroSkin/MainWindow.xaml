@@ -23,8 +23,8 @@
             <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="3*" />
-                    <ColumnDefinition Width="5*" />
+                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="4*" />
                 </Grid.ColumnDefinitions>
                 <hs:ToolBox x:Name="ToolBox" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <hs:PixelEditor x:Name="PixelEditor" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
