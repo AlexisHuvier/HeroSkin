@@ -85,6 +85,8 @@ namespace HeroSkin.Utils.Renderer
 
             GL.GenerateMipmap(GenerateMipmapTarget.Texture2D);
 
+            bitmap.UnlockBits(data);
+
             return new Texture(handle, size);
         }
 
