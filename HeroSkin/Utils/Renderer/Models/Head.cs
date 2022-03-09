@@ -1,6 +1,5 @@
 ﻿using OpenTK.Graphics.OpenGL;
 using OpenTK.Mathematics;
-using System.Drawing;
 
 namespace HeroSkin.Utils.Renderer.Models
 {
@@ -98,8 +97,8 @@ namespace HeroSkin.Utils.Renderer.Models
             shader.SetMatrix4("projection", camera.GetProjectionMatrix());
 
             Matrix4 model = Matrix4.Identity *
-            Matrix4.CreateRotationY((float)MathHelper.DegreesToRadians(time)) *
-            Matrix4.CreateTranslation(new Vector3(0, 3f, 0));
+                Matrix4.CreateTranslation(new Vector3(0, 3f, 0)) *
+                Matrix4.CreateRotationY((float)MathHelper.DegreesToRadians(time));
             shader.SetMatrix4("model", model);
 
             GL.BindVertexArray(vao);
