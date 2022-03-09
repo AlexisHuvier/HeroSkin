@@ -1,0 +1,108 @@
+﻿using OpenTK.Graphics.OpenGL;
+using OpenTK.Mathematics;
+
+namespace HeroSkin.Utils.Renderer.Models
+{
+    public class LeftArm4px
+    {
+        private static readonly float[] vertices =
+              {
+             0.4f,  1.2f, -0.4f, 0.6875f, 0.6875f,
+             0.4f, -1.2f, -0.4f, 0.6875f, 0.5000f,
+            -0.4f, -1.2f, -0.4f, 0.7500f, 0.5000f,
+            -0.4f,  1.2f, -0.4f, 0.7500f, 0.6875f,
+
+             0.4f,  1.2f,  0.4f, 0.8750f, 0.6875f,
+             0.4f, -1.2f,  0.4f, 0.8750f, 0.5000f,
+            -0.4f, -1.2f,  0.4f, 0.8125f, 0.5000f,
+            -0.4f,  1.2f,  0.4f, 0.8125f, 0.6875f,
+
+             0.4f, -1.2f,  0.4f, 0.6250f, 0.5000f,
+             0.4f, -1.2f, -0.4f, 0.6875f, 0.5000f,
+             0.4f,  1.2f, -0.4f, 0.6875f, 0.6875f,
+             0.4f,  1.2f,  0.4f, 0.6250f, 0.6875f,
+
+            -0.4f, -1.2f,  0.4f, 0.8125f, 0.5000f,
+            -0.4f, -1.2f, -0.4f, 0.7500f, 0.5000f,
+            -0.4f,  1.2f, -0.4f, 0.7500f, 0.6875f,
+            -0.4f,  1.2f,  0.4f, 0.8125f, 0.6875f,
+
+            -0.4f, -1.2f,  0.4f, 0.8125f, 0.7500f,
+             0.4f, -1.2f,  0.4f, 0.7500f, 0.7500f,
+             0.4f, -1.2f, -0.4f, 0.7500f, 0.6875f,
+            -0.4f, -1.2f, -0.4f, 0.8125f, 0.6875f,
+
+            -0.4f,  1.2f,  0.4f, 0.7500f, 0.7500f,
+             0.4f,  1.2f,  0.4f, 0.6875f, 0.7500f,
+             0.4f,  1.2f, -0.4f, 0.6875f, 0.6875f,
+            -0.4f,  1.2f, -0.4f, 0.7500f, 0.6875f
+        };
+
+        private static readonly uint[] indices =
+        {
+            0, 1, 3,
+            1, 2, 3,
+
+            4, 5, 7,
+            5, 6, 7,
+
+            8,  9, 11,
+            9, 10, 11,
+
+            12, 13, 15,
+            13, 14, 15,
+
+            16, 17, 19,
+            17, 18, 19,
+
+            20, 21, 23,
+            21, 22, 23
+        };
+
+        private static int vbo;
+        private static int vao;
+        private static int ebo;
+
+        private static readonly Shader shader = Shader.GetSkinRendererShader();
+
+        public static void Setup()
+        {
+            vao = GL.GenVertexArray();
+            GL.BindVertexArray(vao);
+
+            vbo = GL.GenBuffer();
+            GL.BindBuffer(BufferTarget.ArrayBuffer, vbo);
+            GL.BufferData(BufferTarget.ArrayBuffer, vertices.Length * sizeof(float), vertices, BufferUsageHint.DynamicDraw);
+
+            ebo = GL.GenBuffer();
+            GL.BindBuffer(BufferTarget.ElementArrayBuffer, ebo);
+            GL.BufferData(BufferTarget.ElementArrayBuffer, indices.Length * sizeof(uint), indices, BufferUsageHint.DynamicDraw);
+
+            shader.Use();
+
+            int vertexLocation = shader.GetAttribLocation("aPosition");
+            GL.EnableVertexAttribArray(vertexLocation);
+            GL.VertexAttribPointer(vertexLocation, 3, VertexAttribPointerType.Float, false, 5 * sizeof(float), 0);
+
+            int texCoordLocation = shader.GetAttribLocation("aTexCoord");
+            GL.EnableVertexAttribArray(texCoordLocation);
+            GL.VertexAttribPointer(texCoordLocation, 2, VertexAttribPointerType.Float, false, 5 * sizeof(float), 3 * sizeof(float));
+        }
+
+        public static void Render(Camera camera, double time)
+        {
+            shader.Use();
+
+            shader.SetMatrix4("view", camera.GetViewMatrix());
+            shader.SetMatrix4("projection", camera.GetProjectionMatrix());
+
+            Matrix4 model = Matrix4.Identity *
+                Matrix4.CreateTranslation(new Vector3(1.2f, 1f, 0)) *
+                Matrix4.CreateRotationY((float)MathHelper.DegreesToRadians(time));
+            shader.SetMatrix4("model", model);
+
+            GL.BindVertexArray(vao);
+            GL.DrawElements(PrimitiveType.Triangles, indices.Length, DrawElementsType.UnsignedInt, 0);
+        }
+    }
+}

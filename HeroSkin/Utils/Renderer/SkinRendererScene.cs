@@ -27,6 +27,10 @@ namespace HeroSkin.Utils.Renderer
 
             Models.Head.Setup();
             Models.Body.Setup();
+            Models.RightArm4px.Setup();
+            Models.LeftArm4px.Setup();
+            Models.LeftLeg4px.Setup();
+            Models.RightLeg4px.Setup();
         }
 
         public static void Render()
@@ -40,6 +44,10 @@ namespace HeroSkin.Utils.Renderer
                 texture.Use(OpenTK.Graphics.OpenGL4.TextureUnit.Texture0);
                 Models.Head.Render(camera, _time);
                 Models.Body.Render(camera, _time);
+                Models.RightArm4px.Render(camera, _time);
+                Models.LeftArm4px.Render(camera, _time);
+                Models.LeftLeg4px.Render(camera, _time);
+                Models.RightLeg4px.Render(camera, _time);
             }
 
             GL.Finish();
