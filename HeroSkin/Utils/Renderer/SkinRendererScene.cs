@@ -6,6 +6,8 @@ namespace HeroSkin.Utils.Renderer
 {
     public static class SkinRendererScene
     {
+        public static bool is4Px = true;
+
         private static double _time;
 
         private readonly static Camera camera = new Camera(Vector3.UnitZ * 10, 1f);

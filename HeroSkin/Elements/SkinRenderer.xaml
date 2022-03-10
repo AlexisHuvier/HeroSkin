@@ -6,9 +6,17 @@
              xmlns:local="clr-namespace:HeroSkin.Elements"
              xmlns:glWpfControl="clr-namespace:OpenTK.Wpf;assembly=GLWpfControl"
              mc:Ignorable="d" 
-             d:DesignHeight="640" d:DesignWidth="640">
+             d:DesignHeight="700" d:DesignWidth="640">
     <Grid>
-        <glWpfControl:GLWpfControl x:Name="Renderer" Render="Renderer_Render" Width="640" Height="640" RenderTransformOrigin="0.5,0.5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <glWpfControl:GLWpfControl x:Name="Renderer" Render="Renderer_Render" Grid.ColumnSpan="2" Width="640" Height="640" RenderTransformOrigin="0.5,0.5">
             <glWpfControl:GLWpfControl.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="1" ScaleY="1"/>
@@ -18,5 +26,7 @@
                 </TransformGroup>
             </glWpfControl:GLWpfControl.RenderTransform>
         </glWpfControl:GLWpfControl>
+        <Button x:Name="M3Px" Content="3Px" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Height="70" Width="69" FontSize="18" Margin="10,10,5,10" Click="M3Px_Click"/>
+        <Button x:Name="M4Px" Content="4Px" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="70" Width="69" FontSize="18" Margin="5,10,10,10" Click="M4Px_Click"/>
     </Grid>
 </UserControl>
