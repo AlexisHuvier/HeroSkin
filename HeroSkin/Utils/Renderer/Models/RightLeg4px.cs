@@ -17,10 +17,10 @@ namespace HeroSkin.Utils.Renderer.Models
             -0.4f, -1.2f,  0.4f, 0.1875f, 0.5000f,
             -0.4f,  1.2f,  0.4f, 0.1875f, 0.6875f,
 
-             0.4f, -1.2f,  0.4f, 0.0625f, 0.5000f,
-             0.4f, -1.2f, -0.4f, 0.0000f, 0.5000f,
-             0.4f,  1.2f, -0.4f, 0.0000f, 0.6875f,
-             0.4f,  1.2f,  0.4f, 0.0625f, 0.6875f,
+             0.4f, -1.2f,  0.4f, 0.0000f, 0.5000f,
+             0.4f, -1.2f, -0.4f, 0.0625f, 0.5000f,
+             0.4f,  1.2f, -0.4f, 0.0625f, 0.6875f,
+             0.4f,  1.2f,  0.4f, 0.0000f, 0.6875f,
 
             -0.4f, -1.2f,  0.4f, 0.1875f, 0.5000f,
             -0.4f, -1.2f, -0.4f, 0.1250f, 0.5000f,
@@ -97,7 +97,7 @@ namespace HeroSkin.Utils.Renderer.Models
             shader.SetMatrix4("projection", camera.GetProjectionMatrix());
 
             Matrix4 model = Matrix4.Identity *
-                Matrix4.CreateTranslation(new Vector3(-0.4f, -1.4f, 0)) *
+                Matrix4.CreateTranslation(new Vector3(0.4f, -1.4f, 0)) *
                 Matrix4.CreateRotationY((float)MathHelper.DegreesToRadians(time));
             shader.SetMatrix4("model", model);
 

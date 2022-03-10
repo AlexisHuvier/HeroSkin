@@ -3,7 +3,7 @@ using OpenTK.Mathematics;
 
 namespace HeroSkin.Utils.Renderer.Models
 {
-    class Head
+    public class Head
     {
         private static readonly float[] vertices =
         {

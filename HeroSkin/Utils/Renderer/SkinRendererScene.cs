@@ -29,8 +29,15 @@ namespace HeroSkin.Utils.Renderer
             Models.Body.Setup();
             Models.RightArm4px.Setup();
             Models.LeftArm4px.Setup();
-            Models.LeftLeg4px.Setup();
             Models.RightLeg4px.Setup();
+            Models.LeftLeg4px.Setup();
+
+            Models.HeadOverlay.Setup();
+            Models.BodyOverlay.Setup();
+            Models.RightArm4pxOverlay.Setup();
+            Models.LeftArm4pxOverlay.Setup();
+            Models.RightLeg4pxOverlay.Setup();
+            Models.LeftLeg4pxOverlay.Setup();
         }
 
         public static void Render()
@@ -46,8 +53,15 @@ namespace HeroSkin.Utils.Renderer
                 Models.Body.Render(camera, _time);
                 Models.RightArm4px.Render(camera, _time);
                 Models.LeftArm4px.Render(camera, _time);
-                Models.LeftLeg4px.Render(camera, _time);
                 Models.RightLeg4px.Render(camera, _time);
+                Models.LeftLeg4px.Render(camera, _time);
+
+                Models.HeadOverlay.Render(camera, _time);
+                Models.BodyOverlay.Render(camera, _time);
+                Models.RightArm4pxOverlay.Render(camera, _time);
+                Models.LeftArm4pxOverlay.Render(camera, _time);
+                Models.RightLeg4pxOverlay.Render(camera, _time);
+                Models.LeftLeg4pxOverlay.Render(camera, _time);
             }
 
             GL.Finish();
