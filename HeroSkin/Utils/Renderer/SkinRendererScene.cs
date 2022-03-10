@@ -30,16 +30,20 @@ namespace HeroSkin.Utils.Renderer
             Models.Head.Setup();
             Models.Body.Setup();
             Models.RightArm4px.Setup();
+            Models.RightArm3px.Setup();
             Models.LeftArm4px.Setup();
-            Models.RightLeg4px.Setup();
-            Models.LeftLeg4px.Setup();
+            Models.LeftArm3px.Setup();
+            Models.RightLeg.Setup();
+            Models.LeftLeg.Setup();
 
             Models.HeadOverlay.Setup();
             Models.BodyOverlay.Setup();
             Models.RightArm4pxOverlay.Setup();
+            Models.RightArm3pxOverlay.Setup();
             Models.LeftArm4pxOverlay.Setup();
-            Models.RightLeg4pxOverlay.Setup();
-            Models.LeftLeg4pxOverlay.Setup();
+            Models.LeftArm3pxOverlay.Setup();
+            Models.RightLegOverlay.Setup();
+            Models.LeftLegOverlay.Setup();
         }
 
         public static void Render()
@@ -53,17 +57,33 @@ namespace HeroSkin.Utils.Renderer
                 texture.Use(OpenTK.Graphics.OpenGL4.TextureUnit.Texture0);
                 Models.Head.Render(camera, _time);
                 Models.Body.Render(camera, _time);
-                Models.RightArm4px.Render(camera, _time);
-                Models.LeftArm4px.Render(camera, _time);
-                Models.RightLeg4px.Render(camera, _time);
-                Models.LeftLeg4px.Render(camera, _time);
+                if (is4Px)
+                {
+                    Models.RightArm4px.Render(camera, _time);
+                    Models.LeftArm4px.Render(camera, _time);
+                }
+                else
+                {
+                    Models.RightArm3px.Render(camera, _time);
+                    Models.LeftArm3px.Render(camera, _time);
+                }
+                Models.RightLeg.Render(camera, _time);
+                Models.LeftLeg.Render(camera, _time);
 
                 Models.HeadOverlay.Render(camera, _time);
                 Models.BodyOverlay.Render(camera, _time);
-                Models.RightArm4pxOverlay.Render(camera, _time);
-                Models.LeftArm4pxOverlay.Render(camera, _time);
-                Models.RightLeg4pxOverlay.Render(camera, _time);
-                Models.LeftLeg4pxOverlay.Render(camera, _time);
+                if (is4Px)
+                {
+                    Models.RightArm4pxOverlay.Render(camera, _time);
+                    Models.LeftArm4pxOverlay.Render(camera, _time);
+                }
+                else
+                {
+                    Models.RightArm3pxOverlay.Render(camera, _time);
+                    Models.LeftArm3pxOverlay.Render(camera, _time);
+                }
+                Models.RightLegOverlay.Render(camera, _time);
+                Models.LeftLegOverlay.Render(camera, _time);
             }
 
             GL.Finish();
