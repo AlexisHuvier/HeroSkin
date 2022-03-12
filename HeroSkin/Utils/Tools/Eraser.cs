@@ -1,5 +1,6 @@
 ﻿using HeroSkin.Elements;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Shapes;
 
@@ -8,29 +9,40 @@ namespace HeroSkin.Utils.Tools
     public class Eraser : ITool
     {
 
-        public void ErasePixel(PixelEditor pixelEditor)
+        public void ErasePixel(PixelEditor pixelEditor, int brushSize)
         {
             Point mousePos = Mouse.GetPosition(pixelEditor.PixelCanvas);
             int rowPos = (int)(mousePos.X / pixelEditor.pixelSize);
-            int colPos = (int)(mousePos.Y / pixelEditor.pixelSize);
-            double pixelTopPos = colPos * pixelEditor.pixelSize;
-            double pixelLeftPos = rowPos * pixelEditor.pixelSize;
+            int colPos = (int)(mousePos.Y / pixelEditor.pixelSize); 
 
-            if (Mouse.DirectlyOver.GetType() == typeof(Rectangle))
+            for (int x = -brushSize / 2; x <= brushSize / 2; x++)
             {
-                pixelEditor.project.GetLayer(pixelEditor.currentLayer).SetPixel(rowPos, colPos, null);
-                pixelEditor.PixelCanvas.Children.Remove((UIElement)Mouse.DirectlyOver);
+                for (int y = -brushSize / 2; y <= brushSize / 2; y++)
+                {
+                    if (rowPos + x >= 0 && rowPos + x < pixelEditor.rows && colPos + y >= 0 && colPos + y < pixelEditor.cols)
+                    {
+                        foreach (UIElement element in pixelEditor.PixelCanvas.Children)
+                        {
+                            if (element.GetType() == typeof(Rectangle) && Canvas.GetLeft(element) == (rowPos + x) * pixelEditor.pixelSize && Canvas.GetTop(element) == (colPos + y) * pixelEditor.pixelSize)
+                            {
+                                pixelEditor.project.GetLayer(pixelEditor.currentLayer).SetPixel(rowPos + x, colPos + y, null);
+                                pixelEditor.PixelCanvas.Children.Remove(element);
+                                break;
+                            }
+                        }
+                    }
+                }
             }
         }
 
-        public void UseLeftClick(PixelEditor pixelEditor)
+        public void UseLeftClick(MainWindow mainWindow)
         {
-            ErasePixel(pixelEditor);
+            ErasePixel(mainWindow.PixelEditor, mainWindow.ToolBox.GetSliderSize());
         }
 
-        public void UseRightClick(PixelEditor pixelEditor)
+        public void UseRightClick(MainWindow mainWindow)
         {
-            ErasePixel(pixelEditor);
+            ErasePixel(mainWindow.PixelEditor, mainWindow.ToolBox.GetSliderSize());
         }
     }
 }

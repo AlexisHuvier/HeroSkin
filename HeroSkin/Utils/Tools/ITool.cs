@@ -2,7 +2,7 @@
 {
     public interface ITool
     {
-        public void UseLeftClick(Elements.PixelEditor pixelEditor);
-        public void UseRightClick(Elements.PixelEditor pixelEditor);
+        public void UseLeftClick(MainWindow mainWindow);
+        public void UseRightClick(MainWindow mainWindow);
     }
 }

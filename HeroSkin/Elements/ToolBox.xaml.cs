@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace HeroSkin.Elements
 {
@@ -32,6 +24,11 @@ namespace HeroSkin.Elements
             this.mainWindow = mainWindow;
             cpB1.SelectedColor = Colors.Black;
             cpB2.SelectedColor = Colors.White;
+        }
+
+        public int GetSliderSize()
+        {
+            return (int)Math.Round(SizeSlider.Value, 0);
         }
 
         private void cpB1_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
@@ -58,6 +55,14 @@ namespace HeroSkin.Elements
         private void eraserButton_Click(object sender, RoutedEventArgs e)
         {
             currentTool = new Utils.Tools.Eraser();
+        }
+
+        private void SizeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (SizeText != null)
+            {
+                SizeText.Content = GetSliderSize().ToString();
+            }
         }
     }
 }

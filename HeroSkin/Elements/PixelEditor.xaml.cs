@@ -155,12 +155,12 @@ namespace HeroSkin.Elements
             if(Mouse.LeftButton == MouseButtonState.Pressed)
             {
                 UpdateBitmap();
-                mainWindow.ToolBox.currentTool.UseLeftClick(this);
+                mainWindow.ToolBox.currentTool.UseLeftClick(mainWindow);
             }
             else if(Mouse.RightButton == MouseButtonState.Pressed)
             {
                 UpdateBitmap();
-                mainWindow.ToolBox.currentTool.UseRightClick(this);
+                mainWindow.ToolBox.currentTool.UseRightClick(mainWindow);
             }
             
         }
