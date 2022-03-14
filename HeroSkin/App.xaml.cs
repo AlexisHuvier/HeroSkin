@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Serilog;
+using System.Windows;
 
 namespace HeroSkin
 {
@@ -7,5 +8,13 @@ namespace HeroSkin
     /// </summary>
     public partial class App : Application
     {
+        public App() : base()
+        {
+            Utils.Log.logger = new LoggerConfiguration()
+                .ReadFrom.AppSettings()
+                .CreateLogger();
+
+            Utils.Log.logger.Information("=== START LOG ===");
+        }
     }
 }
