@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 using Microsoft.Win32;
 
 namespace HeroSkin
@@ -13,6 +14,26 @@ namespace HeroSkin
             InitializeComponent();
             PixelEditor.SetMainWindow(this);
             ToolBox.SetMainWindow(this);
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            if (Title.EndsWith("*"))
+            {
+                MessageBoxResult result = MessageBox.Show("Voulez-vous sauvegarder avant de quitter ?", "HeroSkin", MessageBoxButton.YesNoCancel);
+                switch(result)
+                {
+                    case MessageBoxResult.Yes:
+                        Save_Click(null, null);
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                    case MessageBoxResult.Cancel:
+                        e.Cancel = true;
+                        break;
+                }
+            }
+            base.OnClosing(e);
         }
 
         private void Open_Click(object sender, RoutedEventArgs e)
