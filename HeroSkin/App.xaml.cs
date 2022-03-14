@@ -14,7 +14,7 @@ namespace HeroSkin
                 .ReadFrom.AppSettings()
                 .CreateLogger();
 
-            Utils.Log.logger.Information("=== START LOG ===");
+            Utils.Log.logger.Information("=== START LOGGING ===");
         }
     }
 }
