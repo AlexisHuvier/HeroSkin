@@ -19,6 +19,9 @@
                     <Separator />
                     <MenuItem Name="Quit" Header="Quitter" Click="Quit_Click"/>
                 </MenuItem>
+                <MenuItem Header="Paramètres">
+                    <MenuItem Name="ChangeModel" Header="Passage 4px/3px" Click="ChangeModel_Click" />
+                </MenuItem>
             </Menu>
             <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>

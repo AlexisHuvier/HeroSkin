@@ -31,15 +31,5 @@ namespace HeroSkin.Elements
         {
             Utils.Renderer.SkinRendererScene.Render();
         }
-
-        private void M3Px_Click(object sender, RoutedEventArgs e)
-        {
-            Utils.Renderer.SkinRendererScene.is4Px = false;
-        }
-
-        private void M4Px_Click(object sender, RoutedEventArgs e)
-        {
-            Utils.Renderer.SkinRendererScene.is4Px = true;
-        }
     }
 }

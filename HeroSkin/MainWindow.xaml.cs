@@ -64,5 +64,10 @@ namespace HeroSkin
         {
 
         }
+
+        private void ChangeModel_Click(object sender, RoutedEventArgs e)
+        {
+            Utils.Renderer.SkinRendererScene.is4Px = !Utils.Renderer.SkinRendererScene.is4Px;
+        }
     }
 }
