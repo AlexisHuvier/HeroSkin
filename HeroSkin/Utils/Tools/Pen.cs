@@ -8,7 +8,7 @@ namespace HeroSkin.Utils.Tools
 {
     public class Pen : ITool
     {
-        public void PaintPixel(Elements.PixelEditor pixelEditor, SolidColorBrush brush, int brushSize)
+        public void PaintPixel(Elements.PixelEditor pixelEditor, SolidColorBrush brush, int brushSize, bool isRectForm)
         {
             Point mousePos = Mouse.GetPosition(pixelEditor.PixelCanvas);
             int rowPos = (int)(mousePos.X / pixelEditor.pixelSize);
@@ -18,8 +18,10 @@ namespace HeroSkin.Utils.Tools
             {
                 for (int y = -brushSize / 2; y <= brushSize / 2; y++)
                 {
-                    if (rowPos + x >= 0 && rowPos + x < pixelEditor.rows && colPos + y >= 0 && colPos + y < pixelEditor.cols)
+                    if (rowPos + x >= 0 && rowPos + x < pixelEditor.rows && colPos + y >= 0 && colPos + y < pixelEditor.cols &&
+                        (isRectForm || System.MathF.Sqrt((x * x) + (y * y)) <= brushSize / 2))
                     {
+
                         bool found = false;
                         foreach (UIElement element in pixelEditor.PixelCanvas.Children)
                         {
@@ -53,12 +55,12 @@ namespace HeroSkin.Utils.Tools
 
         public void UseLeftClick(MainWindow mainWindow)
         {
-            PaintPixel(mainWindow.PixelEditor, mainWindow.PixelEditor.brush1, mainWindow.ToolBox.GetSliderSize());
+            PaintPixel(mainWindow.PixelEditor, mainWindow.PixelEditor.brush1, mainWindow.ToolBox.GetSliderSize(), mainWindow.ToolBox.IsRectForm());
         }
 
         public void UseRightClick(MainWindow mainWindow)
         {
-            PaintPixel(mainWindow.PixelEditor, mainWindow.PixelEditor.brush2, mainWindow.ToolBox.GetSliderSize());
+            PaintPixel(mainWindow.PixelEditor, mainWindow.PixelEditor.brush2, mainWindow.ToolBox.GetSliderSize(), mainWindow.ToolBox.IsRectForm());
         }
     }
 }

@@ -31,6 +31,11 @@ namespace HeroSkin.Elements
             return (int)Math.Round(SizeSlider.Value, 0);
         }
 
+        public bool IsRectForm()
+        {
+            return TypeSelector.SelectedIndex == 0;
+        }
+
         private void cpB1_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
         {
             if (e.NewValue.HasValue)
