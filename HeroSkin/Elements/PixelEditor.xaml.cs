@@ -143,7 +143,9 @@ namespace HeroSkin.Elements
                         bitmap.SetPixel(x, y, pixelDrawing);
                     }
                     else
+                    {
                         bitmap.SetPixel(x, y, System.Drawing.Color.Transparent);
+                    }
                 }
             }
             Utils.Renderer.SkinRendererScene.SetTexture(bitmap);
