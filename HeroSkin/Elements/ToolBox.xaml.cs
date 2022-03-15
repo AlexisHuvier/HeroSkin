@@ -31,6 +31,11 @@ namespace HeroSkin.Elements
             return (int)Math.Round(SizeSlider.Value, 0);
         }
 
+        public int GetSliderForce()
+        {
+            return (int)Math.Round(ForceSlider.Value, 0);
+        }
+
         public bool IsRectForm()
         {
             return TypeSelector.SelectedIndex == 0;
@@ -52,6 +57,22 @@ namespace HeroSkin.Elements
             }
         }
 
+        private void SizeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (SizeText != null)
+            {
+                SizeText.Content = GetSliderSize().ToString();
+            }
+        }
+
+        private void ForceSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (ForceText != null)
+            {
+                ForceText.Content = GetSliderForce().ToString();
+            }
+        }
+
         private void penButton_Click(object sender, RoutedEventArgs e)
         {
             currentTool = new Utils.Tools.Pen();
@@ -62,12 +83,14 @@ namespace HeroSkin.Elements
             currentTool = new Utils.Tools.Eraser();
         }
 
-        private void SizeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void darkerButton_Click(object sender, RoutedEventArgs e)
         {
-            if (SizeText != null)
-            {
-                SizeText.Content = GetSliderSize().ToString();
-            }
+            currentTool = new Utils.Tools.DarkerBrush();
+        }
+
+        private void lighterButton_Click(object sender, RoutedEventArgs e)
+        {
+            currentTool = new Utils.Tools.LighterBrush();
         }
     }
 }
