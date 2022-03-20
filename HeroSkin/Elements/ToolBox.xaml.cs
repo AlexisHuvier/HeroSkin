@@ -92,5 +92,15 @@ namespace HeroSkin.Elements
         {
             currentTool = new Utils.Tools.LighterBrush();
         }
+
+        private void noiseButton_Click(object sender, RoutedEventArgs e)
+        {
+            currentTool = new Utils.Tools.NoiseBrush();
+        }
+
+        private void noiseReseedButton_Click(object sender, RoutedEventArgs e)
+        {
+            Utils.Noise2D.Reseed();
+        }
     }
 }

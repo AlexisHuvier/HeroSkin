@@ -21,20 +21,23 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <xctk:ColorPicker x:Name="cpB1" Grid.ColumnSpan="2" Margin="10,10,5,10" DisplayColorAndName="true" Width="60" Height="25" SelectedColorChanged="cpB1_SelectedColorChanged" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <xctk:ColorPicker x:Name="cpB2"  Grid.ColumnSpan="2" Margin="5,10,10,10" DisplayColorAndName="true" Width="60" Height="25" SelectedColorChanged="cpB2_SelectedColorChanged" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Slider x:Name="SizeSlider" Margin="2,10,10,10" Value="1" Minimum="1" Maximum="30" Width="120" Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="SizeSlider_ValueChanged" />
+        <xctk:ColorPicker x:Name="cpB1" Grid.ColumnSpan="2" Margin="10,10,5,10" DisplayColorAndName="true" Width="80" Height="25" SelectedColorChanged="cpB1_SelectedColorChanged" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <xctk:ColorPicker x:Name="cpB2"  Grid.ColumnSpan="2" Margin="5,10,10,10" DisplayColorAndName="true" Width="80" Height="25" SelectedColorChanged="cpB2_SelectedColorChanged" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Slider x:Name="SizeSlider" Margin="2,10,10,10" Value="1" Minimum="1" Maximum="30" Width="160" Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="SizeSlider_ValueChanged" />
         <Label Name="SizeText" Content="1" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Margin="10,10,2,10" FontSize="16" />
-        <Slider x:Name="ForceSlider" Margin="2,10,10,10" Value="1" Minimum="1" Maximum="30" Width="120" Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="ForceSlider_ValueChanged" />
+        <Slider x:Name="ForceSlider" Margin="2,10,10,10" Value="1" Minimum="1" Maximum="30" Width="160" Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" ValueChanged="ForceSlider_ValueChanged" />
         <Label Name="ForceText" Content="1" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Margin="10,10,2,10" FontSize="16" />
-        <ComboBox Name="TypeSelector" Grid.Row="3" Grid.ColumnSpan="4" Width="120" Margin="10,10,10,10" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <ComboBox Name="TypeSelector" Grid.Row="3" Grid.ColumnSpan="4" Width="160" Margin="10,10,10,10" VerticalAlignment="Center" HorizontalAlignment="Center">
             <ComboBoxItem IsSelected="True">Forme Carrée</ComboBoxItem>
             <ComboBoxItem>Forme Circulaire</ComboBoxItem>
         </ComboBox>
-        <Button Name="penButton" Content="Crayon" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="10,10,5,10" Grid.Row="4" VerticalAlignment="Center" Height="40" Width="60" Click="penButton_Click"/>
-        <Button Name="eraserButton" Content="Gomme" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5,10,10,10" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" Height="40" Width="60" Click="eraserButton_Click"/>
-        <Button Name="darkerButton" Content="Assombrir" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="10,10,5,10" Grid.Row="5" VerticalAlignment="Center" Height="40" Width="60" Click="darkerButton_Click" />
-        <Button Name="lighterButton" Content="Eclairer" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5,10,10,10" Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" Height="40" Width="60" Click="lighterButton_Click" />
+        <Button Name="penButton" Content="Crayon" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="10,10,5,10" Grid.Row="4" VerticalAlignment="Center" Height="40" Width="80" Click="penButton_Click"/>
+        <Button Name="eraserButton" Content="Gomme" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5,10,10,10" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" Height="40" Width="80" Click="eraserButton_Click"/>
+        <Button Name="darkerButton" Content="Assombrir" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="10,10,5,10" Grid.Row="5" VerticalAlignment="Center" Height="40" Width="80" Click="darkerButton_Click" />
+        <Button Name="lighterButton" Content="Eclairer" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5,10,10,10" Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" Height="40" Width="80" Click="lighterButton_Click" />
+        <Button Name="noiseButton" Content="Bruit" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="10,10,5,10" Grid.Row="6" VerticalAlignment="Center" Height="40" Width="80" Click="noiseButton_Click" />
+        <Button Name="noiseReseedButton" Content="Reset Bruit" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5,10,10,10" Grid.Row="6" Grid.Column="2" VerticalAlignment="Center" Height="40" Width="80" Click="noiseReseedButton_Click" />
     </Grid>
 </UserControl>
