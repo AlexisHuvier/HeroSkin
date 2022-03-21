@@ -89,7 +89,22 @@ namespace HeroSkin
 
         private void New_Click(object sender, RoutedEventArgs e)
         {
-
+            if (Title.EndsWith("*"))
+            {
+                MessageBoxResult result = MessageBox.Show("Voulez-vous sauvegarder ?", "HeroSkin", MessageBoxButton.YesNoCancel);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        Save_Click(null, null);
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                    case MessageBoxResult.Cancel:
+                        return;
+                }
+            }
+            Title = "HeroSkin";
+            PixelEditor.Clear();
         }
 
         private void ChangeModel_Click(object sender, RoutedEventArgs e)
