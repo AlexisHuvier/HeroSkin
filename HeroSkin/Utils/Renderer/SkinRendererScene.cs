@@ -6,8 +6,6 @@ namespace HeroSkin.Utils.Renderer
 {
     public static class SkinRendererScene
     {
-        public static bool is4Px = true;
-
         private static double _time;
 
         private readonly static Camera camera = new Camera(Vector3.UnitZ * 10, 1f);
@@ -57,7 +55,7 @@ namespace HeroSkin.Utils.Renderer
                 texture.Use(OpenTK.Graphics.OpenGL4.TextureUnit.Texture0);
                 Models.Head.Render(camera, _time);
                 Models.Body.Render(camera, _time);
-                if (is4Px)
+                if (MainWindow.Settings.is4PxModel)
                 {
                     Models.RightArm4px.Render(camera, _time);
                     Models.LeftArm4px.Render(camera, _time);
@@ -72,7 +70,7 @@ namespace HeroSkin.Utils.Renderer
 
                 Models.HeadOverlay.Render(camera, _time);
                 Models.BodyOverlay.Render(camera, _time);
-                if (is4Px)
+                if (MainWindow.Settings.is4PxModel)
                 {
                     Models.RightArm4pxOverlay.Render(camera, _time);
                     Models.LeftArm4pxOverlay.Render(camera, _time);

@@ -9,8 +9,14 @@ namespace HeroSkin
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static Utils.Settings Settings;
+
         public MainWindow()
         {
+            Settings = Utils.Settings.FromFile("settings.json");
+            Utils.Log.logger.Information("Settings loaded");
+            Utils.Log.logger.Debug(Settings.ToString());
+
             InitializeComponent();
             PixelEditor.SetMainWindow(this);
             ToolBox.SetMainWindow(this);

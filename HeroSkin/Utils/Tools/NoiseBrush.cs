@@ -22,7 +22,7 @@ namespace HeroSkin.Utils.Tools
                         (isRectForm || System.MathF.Sqrt((x * x) + (y * y)) <= brushSize / 2))
                     {
                         Color color = brush.Color;
-                        float noise = Noise2D.Get(rowPos + x, colPos + y, 5, forceBrush * 12, 2f);
+                        float noise = Noise2D.Get(rowPos + x, colPos + y, MainWindow.Settings.octavesNumber, forceBrush * 12, MainWindow.Settings.frequency);
                         color.R = (byte)System.Math.Clamp(color.R - noise, 0, 255);
                         color.G = (byte)System.Math.Clamp(color.G - noise, 0, 255);
                         color.B = (byte)System.Math.Clamp(color.B - noise, 0, 255);
