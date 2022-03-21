@@ -1,0 +1,42 @@
+﻿<Window x:Class="HeroSkin.Elements.ParametersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HeroSkin.Elements"
+        mc:Ignorable="d"
+        Title="ParametersWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="8*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="5*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="3*" />
+        </Grid.RowDefinitions>
+        <Label Content="Paramètres" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="3" FontSize="35"/>
+        <Label Content="Utiliser un modèle 4px : " HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1" FontSize="20"/>
+        <CheckBox Name="Is4PxModelCheck" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" Margin="10,0,0,0" FontSize="24" RenderTransformOrigin="0.5,0.5">
+            <CheckBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1.4" ScaleX="1.2"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </CheckBox.RenderTransform>
+        </CheckBox>
+        <Label Content="Nombre d'octaves du Noise : " HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2" FontSize="20"/>
+        <Slider Name="octavesSlider" Minimum="1" Maximum="20" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10" Width="120" ValueChanged="octavesSlider_ValueChanged"/>
+        <Label Name="octavesText" Content="1" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="18"/>
+        <Label Content="Fréquence du Noise : " HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="3" FontSize="20"/>
+        <Slider Name="frequencySlider" Minimum="1" Maximum="100" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10" Width="120" ValueChanged="frequencySlider_ValueChanged"/>
+        <Label Name="frequencyText" Content="1" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="18"/>
+        <Button Name="validButton" Click="validButton_Click" Content="Valider" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="3" Grid.Row="4" FontSize="20" Width="100" Height="50"/>
+    </Grid>
+</Window>

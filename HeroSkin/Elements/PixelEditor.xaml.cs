@@ -44,6 +44,19 @@ namespace HeroSkin.Elements
             this.mainWindow = mainWindow;
         }
 
+        public void Clear()
+        {
+            while(project.GetLayerCount() > 0)
+            {
+                project.RemoveLayer(0);
+            }
+            project.AddLayer(rows, cols);
+            currentLayer = 0;
+            PixelCanvas.Children.Clear();
+            InitializeCanvasGridLines();
+            UpdateBitmap(false);
+        }
+
         public void SaveFile(string path)
         {
             System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(rows, cols);
@@ -61,8 +74,7 @@ namespace HeroSkin.Elements
 
         public void OpenFile(string path)
         {
-            PixelCanvas.Children.Clear();
-            InitializeCanvasGridLines();
+            Clear();
             System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(path);
             for(int x = 0; x < rows; x++)
             {
@@ -123,9 +135,9 @@ namespace HeroSkin.Elements
             }
         }
 
-        private void UpdateBitmap()
+        private void UpdateBitmap(bool change = true)
         {
-            if (!mainWindow.Title.EndsWith("*"))
+            if (change && !mainWindow.Title.EndsWith("*"))
             {
                 mainWindow.Title += "*";
             }

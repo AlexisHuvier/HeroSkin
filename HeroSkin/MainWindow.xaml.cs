@@ -107,9 +107,10 @@ namespace HeroSkin
             PixelEditor.Clear();
         }
 
-        private void ChangeModel_Click(object sender, RoutedEventArgs e)
+        private void Parameters_Click(object sender, RoutedEventArgs e)
         {
-            Utils.Renderer.SkinRendererScene.is4Px = !Utils.Renderer.SkinRendererScene.is4Px;
+            Elements.ParametersWindow win = new Elements.ParametersWindow();
+            win.Show();
         }
     }
 }
