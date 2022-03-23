@@ -21,7 +21,7 @@ namespace HeroSkin.Utils.Tools
                 for (int y = -brushSize / 2; y <= brushSize / 2; y++)
                 {
                     if (rowPos + x >= 0 && rowPos + x < pixelEditor.rows && colPos + y >= 0 && colPos + y < pixelEditor.cols &&
-                        (isRectForm || System.MathF.Sqrt(x * x + y * y) <= brushSize))
+                        (isRectForm || System.MathF.Sqrt(x * x + y * y) <= brushSize / 2))
                     {
                         foreach (UIElement element in pixelEditor.PixelCanvas.Children)
                         {
