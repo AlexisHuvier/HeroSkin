@@ -28,13 +28,13 @@
                     <ColumnDefinition Width="4*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="3*" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <hs:ToolBox x:Name="ToolBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                <hs:PixelEditor x:Name="PixelEditor" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <hs:SkinRenderer x:Name="SkinRenderer" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.RowSpan="2" />
-                <hs:Layers x:Name="Layers" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                <hs:PixelEditor x:Name="PixelEditor" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                <hs:SkinRenderer x:Name="SkinRenderer" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.RowSpan="2" />
+                <hs:Layers Margin="10" x:Name="Layers" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
             </Grid>
 
         </DockPanel>
