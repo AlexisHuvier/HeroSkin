@@ -20,6 +20,9 @@ namespace HeroSkin
             InitializeComponent();
             PixelEditor.SetMainWindow(this);
             ToolBox.SetMainWindow(this);
+            Layers.SetMainWindow(this);
+
+            Layers.InitLayers();
         }
 
         protected override void OnClosing(CancelEventArgs e)

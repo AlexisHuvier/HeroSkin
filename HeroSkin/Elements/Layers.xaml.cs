@@ -15,9 +15,21 @@ namespace HeroSkin.Elements
         {
             InitializeComponent();
         }
+
         public void SetMainWindow(MainWindow mainWindow)
         {
             this.mainWindow = mainWindow;
+        }
+
+        public void InitLayers()
+        {
+            for(int i = 0; i < mainWindow.PixelEditor.project.GetLayerCount(); i ++)
+            {
+                Layer layer = new Layer();
+                layer.SetMainWindow(mainWindow);
+                layer.InitLayer(mainWindow.PixelEditor.project.GetLayer(i));
+                LayersPanel.Children.Add(layer);
+            }
         }
 
         private void AddLayer_Click(object sender, RoutedEventArgs e)
