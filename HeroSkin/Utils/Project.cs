@@ -6,6 +6,11 @@ namespace HeroSkin.Utils
     {
         private List<Layer> layers = new List<Layer>();
 
+        public int GetLayerID(Layer layer)
+        {
+            return layers.IndexOf(layer);
+        }
+
         public void AddLayer(int width, int height)
         {
             layers.Add(new Layer(width, height));

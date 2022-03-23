@@ -17,11 +17,7 @@
 
         public Pixel GetPixel(int x, int y)
         {
-            if(x < 0 || x >= width || y < 0 || y >= height)
-            {
-                return null;
-            }
-            return pixelGrid[x, y];
+            return x < 0 || x >= width || y < 0 || y >= height ? null : pixelGrid[x, y];
         }
 
         public void SetPixel(int x, int y, Pixel pixel)
