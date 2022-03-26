@@ -28,6 +28,7 @@ namespace HeroSkin.Elements
             MainWindow.Settings.octavesNumber = Convert.ToInt32(Math.Round(octavesSlider.Value, 0));
             MainWindow.Settings.frequency = (int)Math.Round(frequencySlider.Value, 0) / 10f;
             MainWindow.Settings.Save("settings.json");
+            Close();
         }
 
         private void frequencySlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
