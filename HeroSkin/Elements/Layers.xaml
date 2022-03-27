@@ -16,7 +16,8 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Button Name="AddLayer" Content="Ajouter Calque" Width="100" Height="30" Click="AddLayer_Click" />
+        <Button Name="AddLayer" Content="Ajouter Calque" Width="120" Height="35" Click="AddLayer_Click" HorizontalAlignment="Right" Margin="0,0,5,0" />
+        <Button Name="DelLayer" Content="Supprimer Calque" Width="120" Height="35" Click="DelLayer_Click" Grid.Column="1" HorizontalAlignment="Left" Margin="5,0,0,0"/>
         <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden" Grid.Row="1" Grid.ColumnSpan="2">
             <StackPanel Name="LayersPanel" Orientation="Horizontal" />
         </ScrollViewer>

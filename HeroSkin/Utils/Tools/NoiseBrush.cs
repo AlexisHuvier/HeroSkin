@@ -28,32 +28,7 @@ namespace HeroSkin.Utils.Tools
                         color.B = (byte)System.Math.Clamp(color.B - noise, 0, 255);
                         SolidColorBrush brushCopy = new SolidColorBrush(color);
 
-                        bool found = false;
-                        foreach (UIElement element in pixelEditor.PixelCanvas.Children)
-                        {
-                            if (element.GetType() == typeof(Rectangle) && Canvas.GetLeft(element) == (rowPos + x) * pixelEditor.pixelSize && Canvas.GetTop(element) == (colPos + y) * pixelEditor.pixelSize)
-                            {
-                                Rectangle paintedPixel = (Rectangle)element;
-                                paintedPixel.Fill = brushCopy;
-                                pixelEditor.project.GetLayer(pixelEditor.currentLayer).SetPixel(rowPos + x, colPos + y, new Pixel(brushCopy.Color));
-                                found = true;
-                                break;
-                            }
-                        }
-
-                        if (!found)
-                        {
-                            Rectangle pixelToPaint = new Rectangle
-                            {
-                                Width = pixelEditor.pixelSize,
-                                Height = pixelEditor.pixelSize,
-                                Fill = brushCopy
-                            };
-                            Canvas.SetLeft(pixelToPaint, (rowPos + x) * pixelEditor.pixelSize);
-                            Canvas.SetTop(pixelToPaint, (colPos + y) * pixelEditor.pixelSize);
-                            pixelEditor.project.GetLayer(pixelEditor.currentLayer).SetPixel(rowPos + x, colPos + y, new Pixel(brushCopy.Color));
-                            pixelEditor.PixelCanvas.Children.Add(pixelToPaint);
-                        }
+                        pixelEditor.project.GetLayer(pixelEditor.currentLayer).SetPixel(rowPos + x, colPos + y, new Pixel(brushCopy.Color));
                     }
                 }
             }

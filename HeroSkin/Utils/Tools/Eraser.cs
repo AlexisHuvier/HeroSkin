@@ -22,15 +22,7 @@ namespace HeroSkin.Utils.Tools
                     if (rowPos + x >= 0 && rowPos + x < pixelEditor.rows && colPos + y >= 0 && colPos + y < pixelEditor.cols &&
                         (isRectForm || System.MathF.Sqrt(x * x + y * y) <= brushSize / 2))
                     {
-                        foreach (UIElement element in pixelEditor.PixelCanvas.Children)
-                        {
-                            if (element.GetType() == typeof(Rectangle) && Canvas.GetLeft(element) == (rowPos + x) * pixelEditor.pixelSize && Canvas.GetTop(element) == (colPos + y) * pixelEditor.pixelSize)
-                            {
-                                pixelEditor.project.GetLayer(pixelEditor.currentLayer).SetPixel(rowPos + x, colPos + y, null);
-                                pixelEditor.PixelCanvas.Children.Remove(element);
-                                break;
-                            }
-                        }
+                        pixelEditor.project.GetLayer(pixelEditor.currentLayer).SetPixel(rowPos + x, colPos + y, null);
                     }
                 }
             }

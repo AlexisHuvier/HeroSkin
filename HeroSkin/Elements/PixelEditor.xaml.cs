@@ -52,8 +52,7 @@ namespace HeroSkin.Elements
             }
             project.AddLayer(rows, cols);
             currentLayer = 0;
-            PixelCanvas.Children.Clear();
-            InitializeCanvasGridLines();
+            mainWindow.Layers.InitLayers();
             UpdateBitmap(false);
         }
 
@@ -64,9 +63,17 @@ namespace HeroSkin.Elements
             {
                 for(int y = 0; y < cols; y++)
                 {
-                    Color pixel = project.GetLayer(currentLayer).GetPixel(x, y).GetColor();
-                    System.Drawing.Color pixelDrawing = System.Drawing.Color.FromArgb(pixel.A, pixel.R, pixel.G, pixel.B);
-                    bitmap.SetPixel(x, y, pixelDrawing);
+                    Pixel pixel = project.GetPixel(x, y);
+                    if (pixel != null)
+                    {
+                        Color color = pixel.GetColor();
+                        System.Drawing.Color pixelDrawing = System.Drawing.Color.FromArgb(color.A, color.R, color.G, color.B);
+                        bitmap.SetPixel(x, y, pixelDrawing);
+                    }
+                    else
+                    {
+                        bitmap.SetPixel(x, y, System.Drawing.Color.Transparent);
+                    }
                 }
             }
             bitmap.Save(path);
@@ -135,24 +142,36 @@ namespace HeroSkin.Elements
             }
         }
 
-        private void UpdateBitmap(bool change = true)
+        public void UpdateBitmap(bool change = true)
         {
             if (change && !mainWindow.Title.EndsWith("*"))
             {
                 mainWindow.Title += "*";
             }
 
+            PixelCanvas.Children.Clear();
+            InitializeCanvasGridLines();
+
             System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(rows, cols);
             for (int x = 0; x < rows; x++)
             {
                 for (int y = 0; y < cols; y++)
                 {
-                    Pixel pixel = project.GetLayer(currentLayer).GetPixel(x, y);
+                    Pixel pixel = project.GetPixel(x, y);
                     if (pixel != null)
                     {
                         Color color = pixel.GetColor();
                         System.Drawing.Color pixelDrawing = System.Drawing.Color.FromArgb(color.A, color.R, color.G, color.B);
                         bitmap.SetPixel(x, y, pixelDrawing);
+                        Rectangle pixelToPaint = new Rectangle
+                        {
+                            Width = pixelSize,
+                            Height = pixelSize,
+                            Fill = new SolidColorBrush(color)
+                        };
+                        Canvas.SetLeft(pixelToPaint, x * pixelSize);
+                        Canvas.SetTop(pixelToPaint, y * pixelSize);
+                        PixelCanvas.Children.Add(pixelToPaint);
                     }
                     else
                     {
@@ -168,13 +187,13 @@ namespace HeroSkin.Elements
 
             if(Mouse.LeftButton == MouseButtonState.Pressed)
             {
-                UpdateBitmap();
                 mainWindow.ToolBox.currentTool.UseLeftClick(mainWindow);
+                UpdateBitmap();
             }
             else if(Mouse.RightButton == MouseButtonState.Pressed)
             {
-                UpdateBitmap();
                 mainWindow.ToolBox.currentTool.UseRightClick(mainWindow);
+                UpdateBitmap();
             }
             
         }
