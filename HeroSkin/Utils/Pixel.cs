@@ -6,6 +6,8 @@ namespace HeroSkin.Utils
     {
         private Color color = Colors.Transparent;
 
+        public Pixel() {}
+
         public Pixel(Color color)
         {
             this.color = color;

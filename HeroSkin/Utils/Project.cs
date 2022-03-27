@@ -4,7 +4,17 @@ namespace HeroSkin.Utils
 {
     public class Project
     {
-        private List<Layer> layers = new List<Layer>();
+        public List<Layer> layers = new List<Layer>();
+
+        public Pixel GetPixel(int x, int y)
+        {
+            Pixel pixel = null;
+            foreach (Layer layer in layers) {
+                if (layer.IsVisible() && layer.GetPixel(x, y) != null && layer.GetPixel(x, y).GetColor() != System.Windows.Media.Colors.Transparent)
+                    pixel = layer.GetPixel(x, y);
+            };
+            return pixel;
+        }
 
         public int GetLayerID(Layer layer)
         {
