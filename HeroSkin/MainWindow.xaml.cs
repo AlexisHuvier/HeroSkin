@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows;
+using System.IO;
 using Microsoft.Win32;
 
 namespace HeroSkin
@@ -29,11 +30,11 @@ namespace HeroSkin
         {
             if (Title.EndsWith("*"))
             {
-                MessageBoxResult result = MessageBox.Show("Voulez-vous sauvegarder avant de quitter ?", "HeroSkin", MessageBoxButton.YesNoCancel);
+                MessageBoxResult result = MessageBox.Show("Voulez-vous sauvegarder le projet avant de quitter ?", "HeroSkin", MessageBoxButton.YesNoCancel);
                 switch(result)
                 {
                     case MessageBoxResult.Yes:
-                        Save_Click(null, null);
+                        SaveProject_Click(null, null);
                         break;
                     case MessageBoxResult.No:
                         break;
@@ -47,6 +48,21 @@ namespace HeroSkin
 
         private void Open_Click(object sender, RoutedEventArgs e)
         {
+            if (Title.EndsWith("*"))
+            {
+                MessageBoxResult result = MessageBox.Show("Voulez-vous sauvegarder ?", "HeroSkin", MessageBoxButton.YesNoCancel);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        Save_Click(null, null);
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                    case MessageBoxResult.Cancel:
+                        return;
+                }
+            }
+
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg"
@@ -114,6 +130,19 @@ namespace HeroSkin
         {
             Elements.ParametersWindow win = new Elements.ParametersWindow();
             win.Show();
+        }
+
+        private void OpenProject_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void SaveProject_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SaveOnProject_Click(object sender, RoutedEventArgs e)
+        {
         }
     }
 }

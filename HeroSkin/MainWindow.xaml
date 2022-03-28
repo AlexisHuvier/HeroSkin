@@ -13,9 +13,14 @@
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="Fichier">
                     <MenuItem Name="New" Header="Nouveau" Click="New_Click" />
-                    <MenuItem Name="Open" Header="Ouvrir" Click="Open_Click" />
-                    <MenuItem Name="Save" Header="Enregistrer" Click="Save_Click" />
-                    <MenuItem Name="SaveOn" Header="Enregistrer Sous" Click="SaveOn_Click" />
+                    <Separator />
+                    <MenuItem Name="Open" Header="Ouvrir Skin" Click="Open_Click" />
+                    <MenuItem Name="Save" Header="Enregistrer Skin" Click="Save_Click" />
+                    <MenuItem Name="SaveOn" Header="Enregistrer Skin Sous" Click="SaveOn_Click" />
+                    <Separator />
+                    <MenuItem Name="OpenProject" Header="Ouvrir Projet" Click="OpenProject_Click" />
+                    <MenuItem Name="SaveProject" Header="Enregistrer Projet" Click="SaveProject_Click" />
+                    <MenuItem Name="SaveOnProject" Header="Enregistrer Projet Sous" Click="SaveOnProject_Click" />
                     <Separator />
                     <MenuItem Name="Quit" Header="Quitter" Click="Quit_Click"/>
                 </MenuItem>
