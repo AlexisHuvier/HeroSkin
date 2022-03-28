@@ -70,7 +70,7 @@ namespace HeroSkin
             if (openFileDialog.ShowDialog() == true)
             {
                 Title = $"HeroSkin - {openFileDialog.FileName}";
-                PixelEditor.OpenFile(openFileDialog.FileName);
+                Utils.FileManager.PNGManager.Load(this, openFileDialog.FileName);
             }
         }
 
@@ -85,7 +85,7 @@ namespace HeroSkin
             {
                 string file = Title.Split(" - ")[1].Replace("*", "");
                 Title = $"HeroSkin - {file}";
-                PixelEditor.SaveFile(file);
+                Utils.FileManager.PNGManager.Save(this, file);
             }
             else
             {
@@ -102,7 +102,7 @@ namespace HeroSkin
             if(saveFileDialog.ShowDialog() == true)
             {
                 Title = $"HeroSkin - {saveFileDialog.FileName}";
-                PixelEditor.SaveFile(saveFileDialog.FileName);
+                Utils.FileManager.PNGManager.Save(this, saveFileDialog.FileName);
             }
         }
 

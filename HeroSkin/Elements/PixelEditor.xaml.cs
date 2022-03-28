@@ -56,61 +56,6 @@ namespace HeroSkin.Elements
             UpdateBitmap(false);
         }
 
-        public void SaveFile(string path)
-        {
-            System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(rows, cols);
-            for(int x = 0; x < rows; x++)
-            {
-                for(int y = 0; y < cols; y++)
-                {
-                    Pixel pixel = project.GetPixel(x, y);
-                    if (pixel != null)
-                    {
-                        Color color = pixel.GetColor();
-                        System.Drawing.Color pixelDrawing = System.Drawing.Color.FromArgb(color.A, color.R, color.G, color.B);
-                        bitmap.SetPixel(x, y, pixelDrawing);
-                    }
-                    else
-                    {
-                        bitmap.SetPixel(x, y, System.Drawing.Color.Transparent);
-                    }
-                }
-            }
-            bitmap.Save(path);
-        }
-
-        public void OpenFile(string path)
-        {
-            Clear();
-            System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(path);
-            for(int x = 0; x < rows; x++)
-            {
-                for(int y = 0; y < cols; y++)
-                {
-                    System.Drawing.Color pixel = bitmap.GetPixel(x, y);
-                    Color pixelMedia = new Color
-                    {
-                        R = pixel.R,
-                        G = pixel.G,
-                        B = pixel.B,
-                        A = pixel.A
-                    };
-
-                    Rectangle pixelToPaint = new Rectangle
-                    {
-                        Width = pixelSize,
-                        Height = pixelSize,
-                        Fill = new SolidColorBrush(pixelMedia)
-                    };
-                    Canvas.SetLeft(pixelToPaint, x * pixelSize);
-                    Canvas.SetTop(pixelToPaint, y * pixelSize);
-                    project.GetLayer(currentLayer).SetPixel(x, y, new Pixel(pixelMedia));
-                    PixelCanvas.Children.Add(pixelToPaint);
-                }
-            }
-            UpdateBitmap();
-        }
-
         private void InitializeCanvasGridLines()
         {
             for(int curRow = 0; curRow <= rows; curRow++)
