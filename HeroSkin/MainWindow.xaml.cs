@@ -134,6 +134,30 @@ namespace HeroSkin
 
         private void OpenProject_Click(object sender, RoutedEventArgs e)
         {
+            if (Title.EndsWith("*"))
+            {
+                MessageBoxResult result = MessageBox.Show("Voulez-vous sauvegarder ?", "HeroSkin", MessageBoxButton.YesNoCancel);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        SaveProject_Click(null, null);
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                    case MessageBoxResult.Cancel:
+                        return;
+                }
+            }
+
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "HeroSkin Project file (*.hsproj)|*.hsproj"
+            };
+            if (openFileDialog.ShowDialog() == true)
+            {
+                Utils.FileManager.HSProjManager.Load(this, openFileDialog.FileName);
+            }
+
         }
 
         private void SaveProject_Click(object sender, RoutedEventArgs e)
@@ -143,6 +167,14 @@ namespace HeroSkin
 
         private void SaveOnProject_Click(object sender, RoutedEventArgs e)
         {
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            { 
+                Filter = "HeroSkin Project file (*.hsproj)|*.hsproj"
+            };
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                Utils.FileManager.HSProjManager.Save(this, saveFileDialog.FileName);
+            }
         }
     }
 }
