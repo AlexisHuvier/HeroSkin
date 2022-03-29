@@ -31,6 +31,9 @@ namespace HeroSkin.Elements
             else if (!layer.IsVisible())
                 BackgroundBorder.Background = new SolidColorBrush(Colors.DarkGray);
 
+            if (!layer.IsVisible())
+                ShowHide.Content = "Ø";
+
             if (id == 0)
                 GoLeft.IsEnabled = false;
             if (id == mainWindow.PixelEditor.project.GetLayerCount() - 1)
