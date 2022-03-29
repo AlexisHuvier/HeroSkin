@@ -14,10 +14,11 @@ namespace HeroSkin.Utils.FileManager
             for(int i = 0; i < mainWindow.PixelEditor.project.GetLayerCount(); i++)
             {
                 Layer layer = mainWindow.PixelEditor.project.GetLayer(i);
-                writer.Write(layer.IsVisible());
+                writer.Write(layer.name);
                 writer.Write(layer.width);
                 writer.Write(layer.height);
-                for(int x = 0; x < layer.width; x++)
+                writer.Write(layer.IsVisible());
+                for (int x = 0; x < layer.width; x++)
                 {
                     for(int y = 0; y < layer.height; y++)
                     {
@@ -49,11 +50,8 @@ namespace HeroSkin.Utils.FileManager
             int nbLayer = reader.ReadInt32();
             for (int i = 0; i < nbLayer; i++)
             {
-                bool visible = reader.ReadBoolean();
-                int width = reader.ReadInt32();
-                int height = reader.ReadInt32();
-                Layer layer = new Layer(width, height);
-                layer.SetVisible(visible);
+                Layer layer = new Layer(reader.ReadString(), reader.ReadInt32(), reader.ReadInt32());
+                layer.SetVisible(reader.ReadBoolean());
                 for (int x = 0; x < layer.width; x++)
                 {
                     for (int y = 0; y < layer.height; y++)

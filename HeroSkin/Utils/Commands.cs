@@ -5,5 +5,6 @@ namespace HeroSkin.Utils
     public class Commands
     {
         public static RoutedCommand SelectLayer = new RoutedCommand();
+        public static RoutedCommand RenameLayer = new RoutedCommand();
     }
 }

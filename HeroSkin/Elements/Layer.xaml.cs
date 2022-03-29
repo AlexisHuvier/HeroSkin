@@ -25,7 +25,7 @@ namespace HeroSkin.Elements
         {
             this.layer = layer;
             int id = mainWindow.PixelEditor.project.GetLayerID(layer);
-            TitleLayer.Content = $"Layer N°{id + 1}";
+            TitleLayer.Content = layer.name;
             if (mainWindow.PixelEditor.currentLayer == id)
                 BackgroundBorder.Background = new SolidColorBrush(Colors.SlateGray);
             else if (!layer.IsVisible())
@@ -43,6 +43,15 @@ namespace HeroSkin.Elements
         private void SelectLayer_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
             mainWindow.PixelEditor.currentLayer = mainWindow.PixelEditor.project.GetLayerID(layer);
+            mainWindow.Layers.InitLayers();
+        }
+
+        private void RenameLayer_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            TextPopup popup = new TextPopup("Entrez le nom du Layer :");
+            popup.ShowDialog();
+            if (popup.Result != string.Empty && popup.Result.Length > 0)
+                layer.name = popup.Result;
             mainWindow.Layers.InitLayers();
         }
 

@@ -4,11 +4,13 @@
     {
         private Pixel[,] pixelGrid;
         private bool visible;
+        public string name;
         public int width;
         public int height;
 
-        public Layer(int width, int height)
+        public Layer(string name, int width, int height)
         {
+            this.name = name;
             this.width = width;
             this.height = height;
             visible = true;

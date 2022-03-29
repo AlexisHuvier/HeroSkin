@@ -5,6 +5,7 @@ namespace HeroSkin.Utils
     public class Project
     {
         public List<Layer> layers = new List<Layer>();
+        private int layerCount = 0;
 
         public Pixel GetPixel(int x, int y)
         {
@@ -23,7 +24,8 @@ namespace HeroSkin.Utils
 
         public void AddLayer(int width, int height)
         {
-            layers.Add(new Layer(width, height));
+            layers.Add(new Layer($"Layer N°{layerCount + 1}", width, height));
+            layerCount++;
         }
 
         public void RemoveLayer(int layerId)
