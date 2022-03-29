@@ -37,6 +37,7 @@ namespace HeroSkin.Elements
         private void AddLayer_Click(object sender, RoutedEventArgs e)
         {
             mainWindow.PixelEditor.project.AddLayer(mainWindow.PixelEditor.rows, mainWindow.PixelEditor.cols);
+            mainWindow.PixelEditor.currentLayer = mainWindow.PixelEditor.project.GetLayerCount() - 1;
             InitLayers();
         }
 
