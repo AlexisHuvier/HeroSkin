@@ -45,7 +45,14 @@ namespace HeroSkin.Elements
 
         private void GoLeft_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+
             int id = mainWindow.PixelEditor.project.GetLayerID(layer);
+
+            if (mainWindow.PixelEditor.currentLayer == id)
+                mainWindow.PixelEditor.currentLayer = id - 1;
+            else if (mainWindow.PixelEditor.currentLayer == id - 1)
+                mainWindow.PixelEditor.currentLayer = id;
+
             mainWindow.PixelEditor.project.layers[id] = mainWindow.PixelEditor.project.layers[id - 1];
             mainWindow.PixelEditor.project.layers[id - 1] = layer;
             mainWindow.Layers.InitLayers();
@@ -60,6 +67,12 @@ namespace HeroSkin.Elements
         private void GoRight_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             int id = mainWindow.PixelEditor.project.GetLayerID(layer);
+
+            if (mainWindow.PixelEditor.currentLayer == id)
+                mainWindow.PixelEditor.currentLayer = id + 1;
+            else if (mainWindow.PixelEditor.currentLayer == id + 1)
+                mainWindow.PixelEditor.currentLayer = id;
+
             mainWindow.PixelEditor.project.layers[id] = mainWindow.PixelEditor.project.layers[id + 1];
             mainWindow.PixelEditor.project.layers[id + 1] = layer;
             mainWindow.Layers.InitLayers();
