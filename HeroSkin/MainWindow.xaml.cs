@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Windows;
-using System.IO;
 using Microsoft.Win32;
 
 namespace HeroSkin
@@ -11,6 +10,8 @@ namespace HeroSkin
     public partial class MainWindow : Window
     {
         public static Utils.Settings Settings;
+        private string tempSkinName;
+        private bool skinSaved = false;
 
         public MainWindow()
         {
@@ -48,9 +49,9 @@ namespace HeroSkin
 
         private void Open_Click(object sender, RoutedEventArgs e)
         {
-            if (Title.EndsWith("*"))
+            if (!skinSaved)
             {
-                MessageBoxResult result = MessageBox.Show("Voulez-vous sauvegarder ?", "HeroSkin", MessageBoxButton.YesNoCancel);
+                MessageBoxResult result = MessageBox.Show("Voulez-vous sauvegarder le skin ?", "HeroSkin", MessageBoxButton.YesNoCancel);
                 switch (result)
                 {
                     case MessageBoxResult.Yes:
@@ -69,9 +70,10 @@ namespace HeroSkin
             };
             if (openFileDialog.ShowDialog() == true)
             {
-                Title = $"HeroSkin - {openFileDialog.FileName}";
                 Utils.FileManager.PNGManager.Load(this, openFileDialog.FileName);
             }
+            tempSkinName = openFileDialog.FileName;
+            skinSaved = false;
         }
 
         private void Quit_Click(object sender, RoutedEventArgs e)
@@ -81,11 +83,10 @@ namespace HeroSkin
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            if (Title.Split(" - ").Length > 1)
+            if (tempSkinName != null)
             {
-                string file = Title.Split(" - ")[1].Replace("*", "");
-                Title = $"HeroSkin - {file}";
-                Utils.FileManager.PNGManager.Save(this, file);
+                Utils.FileManager.PNGManager.Save(this, tempSkinName);
+                skinSaved = true;
             }
             else
             {
@@ -101,8 +102,9 @@ namespace HeroSkin
             };
             if(saveFileDialog.ShowDialog() == true)
             {
-                Title = $"HeroSkin - {saveFileDialog.FileName}";
                 Utils.FileManager.PNGManager.Save(this, saveFileDialog.FileName);
+                tempSkinName = saveFileDialog.FileName;
+                skinSaved = true;
             }
         }
 
@@ -110,11 +112,11 @@ namespace HeroSkin
         {
             if (Title.EndsWith("*"))
             {
-                MessageBoxResult result = MessageBox.Show("Voulez-vous sauvegarder ?", "HeroSkin", MessageBoxButton.YesNoCancel);
+                MessageBoxResult result = MessageBox.Show("Voulez-vous sauvegarder le projet ?", "HeroSkin", MessageBoxButton.YesNoCancel);
                 switch (result)
                 {
                     case MessageBoxResult.Yes:
-                        Save_Click(null, null);
+                        SaveProject_Click(null, null);
                         break;
                     case MessageBoxResult.No:
                         break;
@@ -136,7 +138,7 @@ namespace HeroSkin
         {
             if (Title.EndsWith("*"))
             {
-                MessageBoxResult result = MessageBox.Show("Voulez-vous sauvegarder ?", "HeroSkin", MessageBoxButton.YesNoCancel);
+                MessageBoxResult result = MessageBox.Show("Voulez-vous sauvegarder le projet ?", "HeroSkin", MessageBoxButton.YesNoCancel);
                 switch (result)
                 {
                     case MessageBoxResult.Yes:
@@ -155,6 +157,7 @@ namespace HeroSkin
             };
             if (openFileDialog.ShowDialog() == true)
             {
+                Title = $"HeroSkin - {openFileDialog.FileName}";
                 Utils.FileManager.HSProjManager.Load(this, openFileDialog.FileName);
             }
 
@@ -162,7 +165,16 @@ namespace HeroSkin
 
         private void SaveProject_Click(object sender, RoutedEventArgs e)
         {
-
+            if (Title.Split(" - ").Length > 1)
+            {
+                string file = Title.Split(" - ")[1].Replace("*", "");
+                Title = $"HeroSkin - {file}";
+                Utils.FileManager.HSProjManager.Save(this, file);
+            }
+            else
+            {
+                SaveOnProject_Click(sender, e);
+            }
         }
 
         private void SaveOnProject_Click(object sender, RoutedEventArgs e)
@@ -173,6 +185,7 @@ namespace HeroSkin
             };
             if (saveFileDialog.ShowDialog() == true)
             {
+                Title = $"HeroSkin - {saveFileDialog.FileName}";
                 Utils.FileManager.HSProjManager.Save(this, saveFileDialog.FileName);
             }
         }
