@@ -27,7 +27,7 @@
                 </Grid.RowDefinitions>
                 <Label Name="TitleLayer" Content="Layer N°1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="3" FontSize="20" Foreground="White" />
                 <Button Name="GoLeft" Content="&lt;" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Width="30" Height="30" Click="GoLeft_Click" />
-                <Button Name="ShowHile" Content="👁" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Width="30" Height="30" Click="ShowHile_Click" />
+                <Button Name="ShowHide" Content="👁" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Width="30" Height="30" Click="ShowHide_Click" />
                 <Button Name="GoRight" Content="&gt;" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" Width="30" Height="30" Click="GoRight_Click" />
             </Grid>
         </Border>

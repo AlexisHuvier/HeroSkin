@@ -61,7 +61,7 @@ namespace HeroSkin.Elements
             mainWindow.Layers.InitLayers();
         }
 
-        private void ShowHile_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void ShowHide_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             layer.SetVisible(!layer.IsVisible());
             mainWindow.Layers.InitLayers();
