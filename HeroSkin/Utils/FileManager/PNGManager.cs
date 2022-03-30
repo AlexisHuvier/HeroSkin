@@ -29,9 +29,17 @@ namespace HeroSkin.Utils.FileManager
             bitmap.Save(path);
         }
 
-        public static void Load(MainWindow mainWindow, string path)
+        public static void Load(MainWindow mainWindow, string path, bool newProject = true)
         {
-            mainWindow.PixelEditor.Clear();
+            if(newProject) 
+                mainWindow.PixelEditor.Clear();
+            else
+            {
+                mainWindow.PixelEditor.project.AddLayer(mainWindow.PixelEditor.rows, mainWindow.PixelEditor.cols);
+                mainWindow.PixelEditor.currentLayer = mainWindow.PixelEditor.project.GetLayerCount() - 1;
+                mainWindow.Layers.InitLayers();
+            }
+
             System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(path);
             for (int x = 0; x < mainWindow.PixelEditor.rows; x++)
             {

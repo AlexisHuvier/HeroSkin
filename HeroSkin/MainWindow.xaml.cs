@@ -49,7 +49,7 @@ namespace HeroSkin
 
         private void Open_Click(object sender, RoutedEventArgs e)
         {
-            if (!skinSaved)
+            if (tempSkinName != null && !skinSaved)
             {
                 MessageBoxResult result = MessageBox.Show("Voulez-vous sauvegarder le skin ?", "HeroSkin", MessageBoxButton.YesNoCancel);
                 switch (result)
@@ -70,7 +70,18 @@ namespace HeroSkin
             };
             if (openFileDialog.ShowDialog() == true)
             {
-                Utils.FileManager.PNGManager.Load(this, openFileDialog.FileName);
+                MessageBoxResult result = MessageBox.Show("Importer le skin dans le projet actuel ?\nDire non créera un nouveau projet.", "HeroSkin", MessageBoxButton.YesNoCancel);
+                switch(result)
+                {
+                    case MessageBoxResult.Yes:
+                        Utils.FileManager.PNGManager.Load(this, openFileDialog.FileName, false);
+                        break;
+                    case MessageBoxResult.No:
+                        Utils.FileManager.PNGManager.Load(this, openFileDialog.FileName);
+                        break;
+                    case MessageBoxResult.Cancel:
+                        return;
+                }
             }
             tempSkinName = openFileDialog.FileName;
             skinSaved = false;
