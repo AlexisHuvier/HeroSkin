@@ -16,8 +16,10 @@ namespace HeroSkin.Elements
             Is4PxModelCheck.IsChecked = MainWindow.Settings.is4PxModel;
             octavesSlider.Value = MainWindow.Settings.octavesNumber;
             frequencySlider.Value = MainWindow.Settings.frequency * 10;
+            saturationSlider.Value = MainWindow.Settings.saturationForce * 100;
 
             frequencyText.Content = ((int)Math.Round(frequencySlider.Value, 0) / 10f).ToString();
+            saturationText.Content = ((int)Math.Round(saturationSlider.Value, 0) / 100f).ToString();
             octavesText.Content = Math.Round(octavesSlider.Value, 0).ToString();
 
         }
@@ -27,6 +29,7 @@ namespace HeroSkin.Elements
             MainWindow.Settings.is4PxModel = Is4PxModelCheck.IsChecked.Value;
             MainWindow.Settings.octavesNumber = Convert.ToInt32(Math.Round(octavesSlider.Value, 0));
             MainWindow.Settings.frequency = (int)Math.Round(frequencySlider.Value, 0) / 10f;
+            MainWindow.Settings.saturationForce = (int)Math.Round(saturationSlider.Value, 0) / 100f;
             MainWindow.Settings.Save("settings.json");
             Close();
         }
@@ -36,6 +39,13 @@ namespace HeroSkin.Elements
             if (frequencyText != null)
             {
                 frequencyText.Content = ((int)Math.Round(frequencySlider.Value, 0) / 10f).ToString();
+            }
+        }
+        private void saturationSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (saturationText != null)
+            {
+                saturationText.Content = ((int)Math.Round(saturationSlider.Value, 0) / 100f).ToString();
             }
         }
 

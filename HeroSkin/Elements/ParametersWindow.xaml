@@ -17,6 +17,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="3*" />
         </Grid.RowDefinitions>
         <Label Content="Paramètres" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="3" FontSize="35"/>
@@ -37,6 +38,9 @@
         <Label Content="Fréquence du Noise : " HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="3" FontSize="20"/>
         <Slider Name="frequencySlider" Minimum="1" Maximum="100" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10" Width="120" ValueChanged="frequencySlider_ValueChanged"/>
         <Label Name="frequencyText" Content="1" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="18"/>
-        <Button Name="validButton" Click="validButton_Click" Content="Valider" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="3" Grid.Row="4" FontSize="20" Width="100" Height="50"/>
+        <Label Content="Force de la saturation : " HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="4" FontSize="20"/>
+        <Slider Name="saturationSlider" Minimum="1" Maximum="100" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10" Width="120" ValueChanged="saturationSlider_ValueChanged"/>
+        <Label Name="saturationText" Content="1" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="18"/>
+        <Button Name="validButton" Click="validButton_Click" Content="Valider" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="3" Grid.Row="5" FontSize="20" Width="100" Height="50"/>
     </Grid>
 </Window>
