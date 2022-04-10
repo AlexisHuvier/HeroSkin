@@ -56,35 +56,10 @@ namespace HeroSkin.Elements
             UpdateBitmap(false);
         }
 
-        private void InitializeCanvasGridLines()
+        public void ModifySaturation(float value)
         {
-            for(int curRow = 0; curRow <= rows; curRow++)
-            {
-                Line gridLine = new Line
-                {
-                    X1 = 0,
-                    X2 = canvasWidth,
-                    Y1 = pixelSize * curRow,
-                    Y2 = pixelSize * curRow,
-                    Stroke = Brushes.DarkGray,
-                    StrokeThickness = 1
-                };
-                PixelCanvas.Children.Add(gridLine);
-            }
-
-            for(int curCol = 0; curCol <= cols; curCol ++)
-            {
-                Line gridLine = new Line
-                {
-                    X1 = pixelSize * curCol,
-                    X2 = pixelSize * curCol,
-                    Y1 = 0,
-                    Y2 = canvasHeight,
-                    Stroke = Brushes.DarkGray,
-                    StrokeThickness = 1
-                };
-                PixelCanvas.Children.Add(gridLine);
-            }
+            project.ModifySaturation(value);
+            UpdateBitmap();
         }
 
         public void UpdateBitmap(bool change = true)
@@ -127,6 +102,37 @@ namespace HeroSkin.Elements
             Utils.Renderer.SkinRendererScene.SetTexture(bitmap);
         }
 
+        private void InitializeCanvasGridLines()
+        {
+            for (int curRow = 0; curRow <= rows; curRow++)
+            {
+                Line gridLine = new Line
+                {
+                    X1 = 0,
+                    X2 = canvasWidth,
+                    Y1 = pixelSize * curRow,
+                    Y2 = pixelSize * curRow,
+                    Stroke = Brushes.DarkGray,
+                    StrokeThickness = 1
+                };
+                PixelCanvas.Children.Add(gridLine);
+            }
+
+            for (int curCol = 0; curCol <= cols; curCol++)
+            {
+                Line gridLine = new Line
+                {
+                    X1 = pixelSize * curCol,
+                    X2 = pixelSize * curCol,
+                    Y1 = 0,
+                    Y2 = canvasHeight,
+                    Stroke = Brushes.DarkGray,
+                    StrokeThickness = 1
+                };
+                PixelCanvas.Children.Add(gridLine);
+            }
+        }
+
         private void UseTool()
         {
 
@@ -140,7 +146,6 @@ namespace HeroSkin.Elements
                 mainWindow.ToolBox.currentTool.UseRightClick(mainWindow);
                 UpdateBitmap();
             }
-            
         }
 
         private void PixelEditor_Loaded(object sender, RoutedEventArgs e)

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Media;
 
 namespace HeroSkin.Utils
 {
@@ -41,6 +42,35 @@ namespace HeroSkin.Utils
         public int GetLayerCount()
         {
             return layers.Count;
+        }
+
+        public void ModifySaturation(float value)
+        {
+            foreach(Layer layer in layers)
+            {
+                for(int x = 0; x < layer.width; x++)
+                {
+                    for (int y = 0; y < layer.height; y++)
+                    {
+
+                        Pixel pixel = layer.GetPixel(x, y);
+                        if(pixel != null)
+                        {
+                            Color pixelColor = pixel.GetColor();
+                            if (pixelColor.A > 0)
+                            {
+                                float[] hslColor = ColorUtils.GetHSLFromColor(pixelColor);
+                                hslColor[1] += value;
+                                if (hslColor[1] < 0)
+                                    hslColor[1] = 0;
+                                else if (hslColor[1] > 1)
+                                    hslColor[1] = 1;
+                                pixel.SetColor(ColorUtils.GetColorFromHSLWithAlpha(hslColor, pixelColor.A));
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

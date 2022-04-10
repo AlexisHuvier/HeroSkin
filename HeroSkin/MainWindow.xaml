@@ -24,6 +24,10 @@
                     <Separator />
                     <MenuItem Name="Quit" Header="Quitter" Click="Quit_Click"/>
                 </MenuItem>
+                <MenuItem Header="Filtre Projet">
+                    <MenuItem Name="SatPlus" Header="Augmenter Saturation" Click="SatPlus_Click" />
+                    <MenuItem Name="SatMoins" Header="Diminuer Saturation" Click="SatMoins_Click" />
+                </MenuItem>
                 <MenuItem Name="Parameters" Header="Paramètres" Click="Parameters_Click"/>
             </Menu>
             <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">

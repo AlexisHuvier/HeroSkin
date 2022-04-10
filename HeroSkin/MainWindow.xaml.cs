@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows;
+using HeroSkin.Elements;
 using Microsoft.Win32;
 
 namespace HeroSkin
@@ -199,6 +200,16 @@ namespace HeroSkin
                 Title = $"HeroSkin - {saveFileDialog.FileName}";
                 Utils.FileManager.HSProjManager.Save(this, saveFileDialog.FileName);
             }
+        }
+
+        private void SatPlus_Click(object sender, RoutedEventArgs e)
+        {
+            PixelEditor.ModifySaturation(Settings.saturationForce);
+        }
+
+        private void SatMoins_Click(object sender, RoutedEventArgs e)
+        {
+            PixelEditor.ModifySaturation(-Settings.saturationForce);
         }
     }
 }
