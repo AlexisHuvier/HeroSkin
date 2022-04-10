@@ -42,9 +42,9 @@ namespace HeroSkin.Utils
         {
             float[] hsl = new float[3];
 
-            float R = r / 255;
-            float G = g / 255;
-            float B = b / 255;
+            float R = r / 255f;
+            float G = g / 255f;
+            float B = b / 255f;
 
             float CMax = MathF.Max(MathF.Max(R, G), B);
             float CMin = MathF.Min(MathF.Min(R, G), B);
